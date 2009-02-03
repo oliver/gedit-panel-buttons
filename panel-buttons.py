@@ -27,6 +27,16 @@ class PBWindowHelper:
         self._plugin = plugin
         self._panels = [] # keep references to Panel objects, to prevent GC from deleting them
 
+        # set special (lean) style for panel buttons
+        gtk.rc_parse_string("""
+            style "panel-buttons-toggle-button-style" {
+              GtkWidget::focus-padding = 0
+              GtkWidget::focus-line-width = 0
+              ythickness = 0
+          }
+          widget "*.panel-buttons-toggle-button" style "panel-buttons-toggle-button-style"
+          """)
+
         statusbar = window.get_children()[0].get_children()[3]
 
         self.btnSide = self._add_panel_button(statusbar, self._window.get_side_panel(), "side panel", 0)
@@ -42,6 +52,7 @@ class PBWindowHelper:
         button.set_focus_on_click(False)
         button.connect_object("toggled", PBWindowHelper.onButtonToggled, self, button, panel)
         button.show()
+        button.set_name("panel-buttons-toggle-button")
 
         statusbar.pack_start(button, expand=False)
         statusbar.reorder_child(button, pos)
