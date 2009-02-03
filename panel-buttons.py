@@ -29,8 +29,8 @@ class PBWindowHelper:
 
         statusbar = window.get_children()[0].get_children()[3]
 
-        self._add_panel_button(statusbar, self._window.get_side_panel(), "side panel", 0)
-        self._add_panel_button(statusbar, self._window.get_bottom_panel(), "bottom panel", 1)
+        self.btnSide = self._add_panel_button(statusbar, self._window.get_side_panel(), "side panel", 0)
+        self.btnBottom = self._add_panel_button(statusbar, self._window.get_bottom_panel(), "bottom panel", 1)
 
     def _add_panel_button (self, statusbar, panel, title, pos):
         button = gtk.ToggleButton(title)
@@ -55,7 +55,9 @@ class PBWindowHelper:
             button.set_active(vis)
 
     def deactivate(self):
-        pass
+        self.btnSide.destroy()
+        self.btnBottom.destroy()
+        self._panels = []
 
     def update_ui(self):
         pass
