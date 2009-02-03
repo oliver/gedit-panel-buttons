@@ -1,0 +1,10 @@
+[Gedit Plugin]
+Loader=python
+Module=panel-buttons
+IAge=2
+Name=Panel Button
+Description=Add buttons to show/hide the panels
+#Icon=search
+Authors=Oliver Gerlich <oliver.gerlich@gmx.de>
+Copyright=Copyright © 2009 Oliver Gerlich <oliver.gerlich@gmx.de>
+Website=http://www.gedit.org
