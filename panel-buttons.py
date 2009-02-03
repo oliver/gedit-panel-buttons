@@ -33,7 +33,12 @@ class PBWindowHelper:
         self.btnBottom = self._add_panel_button(statusbar, self._window.get_bottom_panel(), "bottom panel", 1)
 
     def _add_panel_button (self, statusbar, panel, title, pos):
-        button = gtk.ToggleButton(title)
+        label = gtk.Label()
+        label.set_markup("<small>%s</small>" % title)
+        label.show()
+
+        button = gtk.ToggleButton()
+        button.add(label)
         button.set_focus_on_click(False)
         button.connect_object("toggled", PBWindowHelper.onButtonToggled, self, button, panel)
         button.show()
